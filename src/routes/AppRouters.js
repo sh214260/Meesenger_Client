@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from '../Componnets/SignUp';
 import Login from '../Componnets/Login'
-import Counter from '../Componnets/Counter'
 import Messages from "../Componnets/Messages"
 import Contacts from "../Componnets/Contacts"
 
@@ -12,7 +11,7 @@ const AppRouter = () => {
         {/* נתיבים לעמודים השונים */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/counter" element={<Counter />} />
+         {/* <Route path="/counter" element={<Counter />} />  */}
         <Route path="/messages" element={<Messages freind={null} />} />
         <Route path="/contacts" element={<Contacts />} />
         

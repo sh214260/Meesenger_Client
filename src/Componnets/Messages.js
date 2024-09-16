@@ -5,8 +5,7 @@ import { getMessagesBetweenUsers, sendMessage } from '../api/messageApi';
 import { useSelector } from 'react-redux';
 
 
-
-const Messages = ({freind}) => {
+const Messages = ({friend}) => {
   const token = useSelector((state) => state.userSlice.token)
   const [messageText, setMessageText] = useState(''); // ניהול ה-state של ההודעה החדשה
   const [messages, setMessages] = useState([{}]); // רשימת ההודעות
@@ -18,7 +17,7 @@ const Messages = ({freind}) => {
       const newMessage = {
         content: messageText,
         sender:user._id ,//shira // אתה יכול להתאים את זה למה שנדרש
-        receiver: freind._id
+        receiver: friend._id
       };
       const res = await sendMessage(token, newMessage);
       console.log(res);
@@ -27,13 +26,11 @@ const Messages = ({freind}) => {
     }
   };
   useEffect(() => {
-    const fetchFreind=async()=>{
-
-    }
-    fetchFreind()
+    console.log(friend);
+    
     const fetchMessages = async () => {
       try {
-        const data = await getMessagesBetweenUsers(token, user._id, freind._id);
+        const data = await getMessagesBetweenUsers(token, user._id, friend._id);
         console.log(data.messages);
         setMessages(data.messages)
         messages.map(m => console.log(m.sender))
@@ -51,7 +48,7 @@ const Messages = ({freind}) => {
     <Box sx={{ p: 3 }}>
       {messages.length > 1 ? messages.map((message) => (
         <MessageCard key={message._id}
-          name={message.sender.email}
+          name={message.sender.name}
           content={message.content} />
       )) : <Typography>no</Typography>}
       <Box sx={{ display: 'flex', mt: 2 }}>
